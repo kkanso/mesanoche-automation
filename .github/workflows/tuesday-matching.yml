@@ -1,0 +1,16 @@
+name: Tuesday Matching Algorithm
+on:
+  schedule:
+    - cron: '0 12 * * 2'  # Every Tuesday at 12:00 UTC (9:00 AM Paraguay)
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  run-matching:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call MesaNoche Matching Algorithm
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR2c25hYWRyZXZ5eWdva3FzZ2V5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA2MTc5MzcsImV4cCI6MjA2NjE5MzkzN30.5wtbzef2srEBt5jvLmq2w29vdID3EL7cMyEVljf9Jwg" \
+            -H "Content-Type: application/json" \
+            https://dvsnaadrevyygokqsgey.supabase.co/functions/v1/tuesday-matching-algorithm
